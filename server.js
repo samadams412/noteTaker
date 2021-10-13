@@ -13,8 +13,6 @@ const PORT = process.env.PORT || 3001;
 // Express Middleware
 app.use(express.urlencoded({extended: true}));
 app.use(express.json());
-
-// Set up Middleware
 app.use(express.static("./public"));
 
 // API Route for GET request
@@ -40,7 +38,6 @@ app.post("/api/notes", function(req, res) {
 });
 
 // API Route for Delete request
-
 app.delete("/api/notes/:id", function(req, res) {
     const idDelete = parseInt(req.params.id);
     readFileAsync("./db/db.json", "utf-8").then(function(data) {
@@ -70,11 +67,5 @@ app.get("*", function(req, res) {
     res.sendFile(path.join(__dirname, "./public/index.html"));
 });
 
-
 // Listening
-
-// app.listen(PORT, function() {
-//     console.log("App is listening on PORT " + PORT);
-// })
-
 app.listen(PORT, () => console.log(`App listening on port http://localhost:${PORT}`));
